@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "userName":"qaautomation01",
+      "password":"qaautomation01",
+      "categories": "Laptops",
+      "expectedMinResults": 6,
+      "description": "Select Laptops category"
+    },
+    {
+      "id": 2,
+      "userName":"qaautomation01",
+      "password":"qaautomation01",
+      "categories": "Phones",
+      "expectedMinResults": 7,
+      "description": "Select Phones category"
+    },
+    {
+      "id": 3,
+      "userName":"qaautomation01",
+      "password":"qaautomation01",
+      "categories": "Monitors",
+      "expectedMinResults": 2,
+      "description": "Select Monitors category"
+    }
+]
