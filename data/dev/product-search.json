@@ -3,49 +3,24 @@
       "id": 1,
       "userName":"qaautomation01",
       "password":"qaautomation01",
-      "searchQuery": "Laptop",
-      "expectedMinResults": 1,
+      "categories": "Laptop",
+      "expectedMinResults": 6,
       "description": "Search for Laptop products"
     },
     {
       "id": 2,
-      "userName":"qaautomation01",
-      "password":"qaautomation01",
-      "searchQuery": "Phone",
-      "expectedMinResults": 1,
+      "userName":"qaautomation02",
+      "password":"qaautomation02",
+      "categories": "Phones",
+      "expectedMinResults": 7,
       "description": "Search for Phone products"
     },
     {
       "id": 3,
-      "userName":"qaautomation01",
-      "password":"qaautomation01",
-      "searchQuery": "Monitor",
-      "expectedMinResults": 1,
+      "userName":"qaautomation03",
+      "password":"qaautomation03",
+      "categories": "Monitor",
+      "expectedMinResults": 2,
       "description": "Search for Monitor products"
-    },
-    {
-      "id": 4,
-
-      "userName":"qaautomation01",
-      "password":"qaautomation01",
-      "searchQuery": "Tablet",
-      "expectedMinResults": 1,
-      "description": "Search for Tablet products"
-    },
-    {
-      "id": 5,
-      "userName":"qaautomation01",
-      "password":"qaautomation01",
-      "searchQuery": "NonexistentProduct123",
-      "expectedResults": 0,
-      "description": "Search for non-existent product"
-    },
-    {
-      "id": 6,
-      "userName":"qaautomation01",
-      "password":"qaautomation01",
-      "searchQuery": "",
-      "expectedResults": 0,
-      "description": "Search with empty string"
     }
 ]

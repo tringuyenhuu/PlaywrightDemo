@@ -6,9 +6,20 @@ export const environments = {
   sit: sitEnvironment,
 };
 
-export type Environment = keyof typeof environments;
+interface EnvironmentConfig {
+    baseURL: string;
+    apiURL: string;
+    waitTimeout: number;
+    searchTimeout: number;
+    retries: number;
+}
 
-export function getEnvironment(env?: string): typeof environments['dev'] {
-  const currentEnv = (env || process.env.ENV || 'dev') as Environment;
+type Environment = keyof typeof environments;
+
+function getEnvironment(env?: Environment): EnvironmentConfig {
+  const currentEnv: Environment = (env || (process.env.ENV || 'dev')) as Environment;
   return environments[currentEnv];
 }
+
+export { getEnvironment };
+export type { EnvironmentConfig, Environment };

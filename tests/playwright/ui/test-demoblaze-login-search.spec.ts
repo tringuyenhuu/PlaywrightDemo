@@ -1,17 +1,15 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../../pages/login.page';
-import { ProductPage } from '../../../pages/product.page';
-import { getEnvironment } from '../../../environment/environments';
+import { test, expect } from '../fixtures';
+import { getProductSearchData } from '../../../utils/test-data';
 
-const env = getEnvironment();
-const currentEnv = (process.env.ENV || 'dev') as 'dev' | 'sit';
-// Import data based on current environment
-const productSearchData = require(`../../data/${currentEnv}/product-search.json`);
+
+const productSearchData = getProductSearchData();
+
+// Scenario: Following user login, the user selects a category and confirms that the expected items are present within that category
+
 for (const entry of productSearchData) {
-test(`testcase id: ${entry.id}  User can search for a product: ${entry.description}`, async ({ page }) => {
-
-  const loginPage = new LoginPage(page);
-  const productPage = new ProductPage(page);
+test(`testcase id: ${entry.id}  User can search for a product: ${entry.description}`, async ({ 
+    page, loginPage, productPage, env 
+  }) => {
   
   await loginPage.goto(env.baseURL);
   await loginPage.login(entry.userName, entry.password);
@@ -19,7 +17,7 @@ test(`testcase id: ${entry.id}  User can search for a product: ${entry.descripti
   await page.waitForTimeout(env.waitTimeout);
   await expect(page.locator('#nameofuser')).toBeVisible();
   await expect(page.locator('#nameofuser')).toHaveText(`Welcome ${entry.userName}`);
-  
+
   await productPage.selectCategories(entry.categories);
   // Wait for products to load
   await page.waitForTimeout(env.searchTimeout);
