@@ -1,6 +1,8 @@
 import { test, expect } from '../fixtures';
 import { createBycatRequestConfig } from '../../../api/api-request-config';
 
+// Scenario: The user selects a category and confirms that the expected items are present within that category
+
 test('test_demoblaze_api_get_phones', async ({ request, env }) => {
   const category = 'phone'; // Define the category
   const requestConfig = createBycatRequestConfig(env.apiURL,category);
