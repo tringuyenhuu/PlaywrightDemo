@@ -1,11 +1,21 @@
-import { Page } from '@playwright/test';
-import { getEnvironment } from '../environment/environments';
+import { Page, Locator } from '@playwright/test';
 
 export class ProductPage {
-  constructor(private page: Page) {}
+  readonly page: Page;
+  readonly categoryList: Locator;
 
-  async selectCategories(categories: string) {
-    await this.page.click(`text=${categories}`);
+  constructor(page: Page) {
+    this.page = page;
+    this.categoryList = page.locator('.list-group');
   }
 
+  async selectCategories(categoryName: string) {
+    const categoryLink = this.categoryList.getByRole('link', { name: categoryName, exact: true });
+    await categoryLink.click();
+  }
+
+  async getProductCount(): Promise<number> {
+    // Locate the product cards
+    return await this.page.locator('.card-block').count();
+  }
 }

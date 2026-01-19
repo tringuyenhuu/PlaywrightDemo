@@ -1,18 +1,28 @@
-import { Page } from '@playwright/test';
-import { getEnvironment } from '../environment/environments';
+import { Page, Locator } from '@playwright/test';
 
 export class LoginPage {
+  readonly page: Page;
+  readonly loginNavButton: Locator;
+  readonly usernameInput: Locator;
+  readonly passwordInput: Locator;
+  readonly loginSubmitButton: Locator;
 
-  constructor(private page: Page) {}
+  constructor(page: Page) {
+    this.page = page;
+    this.loginNavButton = page.locator('//a[@id="login2"]');
+    this.usernameInput = page.locator('#loginusername');
+    this.passwordInput = page.locator('#loginpassword');
+    this.loginSubmitButton = page.locator('//button[text()="Log in"]');
+  }
 
   async goto(baseURL: string) {
     await this.page.goto(baseURL);
   }
 
   async login(username: string, password: string) {
-    await this.page.locator('//a[@id="login2"]').click();
-    await this.page.locator('#loginusername').fill(username);
-    await this.page.locator('#loginpassword').fill(password);
-    await this.page.locator('//button[text()="Log in"]').click();
+    await this.loginNavButton.click();
+    await this.usernameInput.fill(username);
+    await this.passwordInput.fill(password);
+    await this.loginSubmitButton.click();
   }
 }
